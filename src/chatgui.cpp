@@ -2,9 +2,12 @@
 #include <wx/colour.h>
 #include <wx/image.h>
 #include <string>
+#include <iostream>
+#include <memory>
 #include "chatbot.h"
 #include "chatlogic.h"
 #include "chatgui.h"
+
 
 // size of chatbot window
 const int width = 414;
@@ -116,9 +119,8 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
 
     //// STUDENT CODE
     ////
-// SHARED PONITER???
     // create chat logic instance
-    std::shared_ptr<ChatLogic> _chatLogic(new ChatLogic);
+    _chatLogic = std::make_unique<ChatLogic>(); //unique pointer
 
     // pass pointer to chatbot dialog so answers can be displayed in GUI
     _chatLogic->SetPanelDialogHandle(this);
@@ -130,16 +132,16 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     //// EOF STUDENT CODE
 }
 
-ChatBotPanelDialog::~ChatBotPanelDialog()
-{
-    //// STUDENT CODE
-    ////
+ ChatBotPanelDialog::~ChatBotPanelDialog()
+ {
+//     //// STUDENT CODE
+//     ////
 
-    delete _chatLogic;
+//     delete _chatLogic;
 
-    ////
-    //// EOF STUDENT CODE
-}
+//     ////
+//     //// EOF STUDENT CODE
+ }
 
 void ChatBotPanelDialog::AddDialogItem(wxString text, bool isFromUser)
 {
