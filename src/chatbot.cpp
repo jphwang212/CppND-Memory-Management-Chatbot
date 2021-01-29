@@ -58,8 +58,8 @@ ChatBot& ChatBot::operator=(const ChatBot &source) // copy assignment operator
     if(this == &source){
         return *this;
     }
-    delete[] _image;
     _chatLogic = source._chatLogic;
+    _image = new wxBitmap();
     _image = source._image;
     _currentNode = source._currentNode;
     _rootNode = source._rootNode;
@@ -84,7 +84,6 @@ ChatBot& ChatBot::operator=(ChatBot &&source) // move assignment operator
     if(this == &source){
         return *this;
     }
-    delete[] _image;
     _image = source._image;
     _chatLogic = source._chatLogic;
     _chatLogic->SetChatbotHandle(this);
